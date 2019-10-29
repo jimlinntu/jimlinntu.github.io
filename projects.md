@@ -41,7 +41,7 @@ table) in my Chinese Dark Chess AI agent by C++.
 - **[Millionaire-class](https://github.com/jimlinntu/Millionaire-class)** - A electron app that is inspired by "Who is the Millionaire" show.
 
 ## Tutorial
-- **[Machine Learning Tutorial](https://github.com/jimlinntu/MLTutorial-HSNU2019)** - I teached several high students machine learning.
+- **[Machine Learning Tutorial](https://github.com/jimlinntu/MLTutorial-HSNU2019)** - I taught several high students machine learning.
 
 ## Programming
 - **[My Problem Solving Playground](https://github.com/jimlinntu/gym)** - mainly contains code for [Codeforces](http://codeforces.com/) now.
