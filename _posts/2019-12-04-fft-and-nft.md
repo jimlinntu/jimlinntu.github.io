@@ -170,13 +170,23 @@ $$
     A_{i:j:step}(x) = <a_i, a_{i+step}, ... >(x) \text{(Not include $j$)}
 $$
 
-# Number Theoretic Transform
-TODO
+# Number Theoretic Transform (NTT)
 
-
-
-
+## Procedure of NTT
+* Let $$ n $$ be the transformed size of an input vector
+* Choose a **prime number** $$ p $$ in the form of $$ p = k \cdot n + 1 $$, where $$ k \geq 1 $$.
+By [Dirichilet prime theorem](https://en.wikipedia.org/wiki/Dirichlet's_theorem_on_arithmetic_progressions), you are guaranteed to find a $$ k $$ such that $$ p $$ is a prime.
+* Let $$ g $$ be the primitive $$ p - 1 $$ root of unitiy (or say, primitive root modulo $$ p $$).
+(It is guaranteed that you can find a $$ g $$ by the property of multiplicative group $$ \mathbb{Z}_p $$, though I don't know why.)
+Note that: $$ \{ g^0, g^1, g^2, ... g^{p-2} \} $$ under modulo $$ p $$ are unique.
+* Define $$ w_n \equiv g^k \mod p $$. By Euler theorem, $$ w^n_n = g^{kn} = g^{p-1} = g ^{\phi(p)}\equiv 1 \mod p $$.
+Consider $$ w^{i}_n = g^{ik} $$ for $$ 0 \leq i < n $$, because $$ 0 \leq ik < nk = p - 1$$, by the property of [Primitive root modulo n](https://www.wikiwand.com/en/Primitive_root_modulo_n), we can make sure $$ \{ w^{0}_n, w^{1}_n, ... , w^{n-1}_n \} $$ under modulo $$ p $$ are unique.
+(You can prove that $$ w^{\frac{n}{2}}_{n} \equiv -1 \mod p$$ because $$ \{ w^{0}_n, w^{1}_n, ... , w^{n-1}_n \} $$ are unique. 
+Therefore, every time you squre $$ \{ w^{0}_n, w^{1}_n, ... , w^{n-1}_n \} $$, the size of this set will be divided by 2)
 # References
 * <http://blog.miskcoo.com/2015/04/polynomial-multiplication-and-fast-fourier-transform>
 * [MIT 3. Divide & Conquer: FFT](https://www.youtube.com/watch?v=iTMn0Kt18tg)
 * [Number Theoretic Transform](https://ccrma.stanford.edu/~jos/mdft/Number_Theoretic_Transform.html)
+* [Primitive root modulo n](https://www.wikiwand.com/en/Primitive_root_modulo_n)
+* <https://www.wikiwand.com/en/Discrete_Fourier_transform_(general)#/Number-theoretic_transform>
+* <https://www.nayuki.io/page/number-theoretic-transform-integer-dft>
