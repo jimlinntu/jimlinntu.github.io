@@ -184,6 +184,8 @@ Consider $$ w^{i}_n = g^{ik} $$ for $$ 0 \leq i < n $$, because $$ 0 \leq ik < n
 (You can prove that $$ w^{\frac{n}{2}}_{n} \equiv -1 \mod p$$ because $$ \{ w^{0}_n, w^{1}_n, ... , w^{n-1}_n \} $$ are unique. 
 Therefore, every time you squre $$ \{ w^{0}_n, w^{1}_n, ... , w^{n-1}_n \} $$, the size of this set will be divided by 2)
 
+
+
 # References
 * <http://blog.miskcoo.com/2015/04/polynomial-multiplication-and-fast-fourier-transform>
 * [MIT 3. Divide & Conquer: FFT](https://www.youtube.com/watch?v=iTMn0Kt18tg)
@@ -191,3 +193,4 @@ Therefore, every time you squre $$ \{ w^{0}_n, w^{1}_n, ... , w^{n-1}_n \} $$, t
 * [Primitive root modulo n](https://www.wikiwand.com/en/Primitive_root_modulo_n)
 * <https://www.wikiwand.com/en/Discrete_Fourier_transform_(general)#/Number-theoretic_transform>
 * <https://www.nayuki.io/page/number-theoretic-transform-integer-dft>
+* [Codeforces tutorial](https://codeforces.com/blog/entry/48798)
