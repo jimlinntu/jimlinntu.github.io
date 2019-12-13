@@ -114,6 +114,66 @@ $$
     w^{k + \frac{n}{2}}_{n} = e^{\frac{2 \pi i}{n} \cdot \frac{n}{2}} \cdot w^{k}_{n} = - w^{k}_{n}
 $$
 
+# Recursively FFT
+Here is the pseudocode:
+~~~
+fft(<a0, a1, a2, a3 ... , an-1>){
+    result = [None] * n
+    even = fft(<a0, a2, ... an-2>) // even[i] == A(w^{i}_{n/2})
+    assert(len(even) == n/2)
+    odd = fft(<a1, a3, ..., an-1>)
+    assert(len(odd) == n/2)
+    
+    for(int i = 0; i < n; i++){
+        // A(w^i_n) = A_even(w^{2i}_n) + w^i_n * A_odd(w^{2i}_n)
+        // See the fact below.
+        result[i] = even[i % (n/2)] + w^i_n * odd[i % (n/2)]
+    }
+
+    return result
+}
+~~~
+
+$$
+    (w^{i}_n)^2 = w^{2i}_n = w^{i}_{\frac{n}{2}} = w^{i \mod \frac{n}{2}}_{\frac{n}{2}}
+$$
+
+This is the code written by miskoo (See reference):
+
+~~~c++
+void fft(int n, complex<double>* buffer, int offset, int step, complex<double>* epsilon)
+{
+    if(n == 1) return;
+    int m = n >> 1;
+    fft(m, buffer, offset, step << 1, epsilon);
+    fft(m, buffer, offset + step, step << 1, epsilon);
+    for(int k = 0; k != m; ++k)
+    {
+        int pos = 2 * step * k;
+        temp[k] = buffer[pos + offset] + epsilon[k * step] * buffer[pos + offset + step];
+        temp[k + m] = buffer[pos + offset] - epsilon[k * step] * buffer[pos + offset + step];
+    }
+ 
+    for(int i = 0; i != n; ++i)
+        buffer[i * step + offset] = temp[i];
+}
+~~~
+
+For some people, this code is hard to understand at the first glance.
+So let us visualize it!:
+
+![recurseive-fft](/img/blog/fft-recursive.jpg)
+
+Note that for simplicity, I denote:
+
+$$
+    A_{i:j:step}(x) = <a_i, a_{i+step}, ... >(x) \text{(Not include $j$)}
+$$
+
+# Number Theoretic Transform
+TODO
+
+
 
 
 # References
