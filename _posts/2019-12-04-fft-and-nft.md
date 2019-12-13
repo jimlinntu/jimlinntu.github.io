@@ -183,6 +183,7 @@ Note that: $$ \{ g^0, g^1, g^2, ... g^{p-2} \} $$ under modulo $$ p $$ are uniqu
 Consider $$ w^{i}_n = g^{ik} $$ for $$ 0 \leq i < n $$, because $$ 0 \leq ik < nk = p - 1$$, by the property of [Primitive root modulo n](https://www.wikiwand.com/en/Primitive_root_modulo_n), we can make sure $$ \{ w^{0}_n, w^{1}_n, ... , w^{n-1}_n \} $$ under modulo $$ p $$ are unique.
 (You can prove that $$ w^{\frac{n}{2}}_{n} \equiv -1 \mod p$$ because $$ \{ w^{0}_n, w^{1}_n, ... , w^{n-1}_n \} $$ are unique. 
 Therefore, every time you squre $$ \{ w^{0}_n, w^{1}_n, ... , w^{n-1}_n \} $$, the size of this set will be divided by 2)
+
 # References
 * <http://blog.miskcoo.com/2015/04/polynomial-multiplication-and-fast-fourier-transform>
 * [MIT 3. Divide & Conquer: FFT](https://www.youtube.com/watch?v=iTMn0Kt18tg)
