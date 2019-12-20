@@ -330,7 +330,7 @@ Let us use several examples to make sure our idea is feasible:
 3. $$ 8(8) - (p- 10)(-10) \equiv 18 \mod p $$
 
 
-Practically, you can map a negative number $$ a $$ to $$ p - a $$ and then restore it after performing NTT by $$ p - a $$ (if the output coefficient is $$ a $$)!
+Practically, you can map a negative number $$ a $$ to $$ p + a $$ and then restore it after performing NTT by $$ a - p $$ (if the output coefficient is $$ a $$)!
 
 Isn't it interesting?
 
