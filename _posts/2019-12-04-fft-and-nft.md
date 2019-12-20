@@ -262,7 +262,56 @@ $$
 
 by the original definition of Euclid algorithm and our claim above.
 
+### Alternative way to compute multiplicative inverse
+In our case, our goal is to compute:
 
+$$
+    ax \equiv 1 \mod p
+$$
+
+By [Euler's theorem](https://www.wikiwand.com/en/Modular_multiplicative_inverse#/Using_Euler's_theorem),
+
+$$
+    a^{\phi(p)} \equiv 1 \mod p \Rightarrow a^{p-1} \equiv 1 \mod p \Rightarrow a^{-1} \equiv a^{p-2} \mod p
+$$
+
+Nevertheless, in practice, we can just swap the result, because if the input polynomial is $$ A $$ and:
+
+$$
+    (A(w^0_n), A(w^1_n), A(w^2_n), A(w^3_n), A(w^4_n), ..., A(w^{n-1}_n))
+$$
+
+Our goal is to get (By the definition of inverse FFT):
+
+$$
+    \frac{1}{n}(A(w^{-0}_n), A(w^{-1}_n), A(w^{-2}_n), A(w^{-3}_n), A(w^{-4}_n), ..., A(w^{-(n-1)}_n))
+$$
+
+Recall that:
+
+$$
+    w_{n} = g^k \mod p
+$$
+
+Observe that:
+
+$$
+    \begin{align*}
+        w^{n-i}_n &= g^{k (n - i)} \mod p\\
+                  &= g^{kn - ki} \mod p \\
+                  &= 1 \cdot g^{-ki} \mod p \\
+                  &= w^{-i}_n \mod p \text{ (By definition)}
+    \end{align*}
+$$
+
+Therefore, 
+
+$$
+    \frac{1}{n}(A(w^{-0}_n), A(w^{-1}_n), A(w^{-2}_n), A(w^{-3}_n), A(w^{-4}_n), ..., A(w^{-(n-1)}_n)) = \\
+    \frac{1}{n}(A(w^{0}_n), A(w^{n-1}_n), A(w^{n-2}_n), A(w^{n-3}_n), A(w^{n-4}_n), ..., A(w^{1}_n))
+$$
+
+, which can be implemented by `std::swap` efficiently! (and no need to explicitly compute $$ w^{-i}_n $$)
 
 ## How to handle negative number
 (Thanks to [yao11617](http://github.com/yao11617)'s contribution!)
@@ -335,7 +384,8 @@ In case of that website crash, I backup that table here:
 4179340454199820289|29|57|3
 
 
-
+# My C++ code
+{% gist 9ecae915720afef9c9b0c3f519bacd7d %}
 
 # References
 * <http://blog.miskcoo.com/2015/04/polynomial-multiplication-and-fast-fourier-transform>
