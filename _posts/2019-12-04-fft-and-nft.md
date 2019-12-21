@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Dive into Fast Fourier Transform
+tags: [fft, ntt, divide-and-conquer]
 ---
 
 Recently, I saw this codeforce problem <https://codeforces.com/problemset/problem/1257/G>, 
